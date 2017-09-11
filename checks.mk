@@ -1,5 +1,5 @@
 checks = [
-( ALL_HOSTS, "cpu.threads" , None, (5000,7000) ),
+( ALL_HOSTS, "cpu.threads" , None, (8000,10000) ),
 ]
 
 tcp_connect_timeout = 120.0
