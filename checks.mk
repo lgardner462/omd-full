@@ -1,4 +1,4 @@
-checks = [
+checks += [
 ( ALL_HOSTS, "cpu.threads" , None, (8000,10000) ),
 ]
 
