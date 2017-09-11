@@ -38,23 +38,24 @@ fi
 contract=$1
 password=$2
 adminname=$contract-admin
-#sed "s/tsstuff/$contract/g" contacts.mk > /omd/sites/$site/etc/check_mk/conf.d/wato/contacts.mk 
-#sed "s/tsstuff/$contract/g" checks.mk > /omd/sites/$site/etc/check_mk/conf.d/wato/checks.mk
-#sed "s/tsstuff/$contract/g" groups.mk > /omd/sites/$site/etc/check_mk/conf.d/wato/groups.mk
-#sed "s/tsstuff/$contract/g" multisite.mk > /omd/sites/$site/etc/check_mk/multisite.mka
-#sed -i "s/tsstuff/$contract/g" notifications.mk
-#sed -i "s/TSSTUFF/${contract^^}/g" notifications.mk
-#sed "s/tsstuff/$contract/g" printers.mk > /omd/sites/$site/etc/check_mk/conf.d/wato/printers.mk
-#sed "s/tsstuff/$contract/g" notifications.mk > /omd/sites/$site/etc/check_mk/conf.d/wato/notifications.mk
-#sed "s/tsstuff/$contract/g" rules.mk > /omd/sites/$site/etc/check_mk/conf.d/wato/rules.mk
-#sed "s/tsstuff/$contract/g" users.mk > /omd/sites/$site/etc/check_mk/multisite.d/wato/users.mk
-#cp timeperiods.mk /omd/sites/$site/etc/check_mk/conf.d/wato/timeperiods.mk
+
 cd /omd/sites/$site/etc/check_mk/conf.d/wato
-cp ~/git_pull.sh ~/etc/check_mk/conf.d/
-cp ~/git_push.sh ~/etc/check_mk/conf.d/
-cd ~/etc/check_mk/conf.d/wato && ./git_pull.sh 
+
+
+echo "Clone from lgardner omd-full repo, make him put it somewhere else if needed"
+git clone git@github.com:lgardner462/omd-full.git .
+
+cp bin/scripts/git_push.sh .
+cd bin/scripts/git_pull.sh .
+
 mv users.mkz ../../multisite.d/wato/users.mk
 mv multisite.mkz ../../multisite.mk
+
+git rm --cached bin
+
+git add .
+
+git-sed -f g tsstuff $(whoami)
 
 cmk -II; cmk -O
 
