@@ -1,6 +1,5 @@
 checks = [
 ( ALL_HOSTS, "cpu.threads" , None, (8000,10000) ),
-( ALL_HOSTS, "cpu.load" , None, (11.0,20.0) ),
 ]
 
 
