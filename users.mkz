@@ -1,0 +1,32 @@
+# Written by Multisite UserDB
+# encoding: utf-8
+
+multisite_users = \
+{'machineuser': {'alias': u'machine',
+                 'automation_secret': 'YDHDGDAPHVFUYHXLPFXN',
+                 'force_authuser': False,
+                 'force_authuser_webservice': False,
+                 'locked': False,
+                 'roles': ['admin'],
+                 'start_url': 'dashboard.py'},
+ 'neuro-admin': {'alias': u'neuro-admin',
+                 'force_authuser': False,
+                 'force_authuser_webservice': False,
+                 'locked': False,
+                 'roles': ['admin'],
+                 'start_url': 'dashboard.py'},
+ 'neuro-pager': {'alias': u'neuro-admin', 'locked': True, 'roles': ['user']},
+ 'neuro-view': {'alias': u'neuro view',
+                'force_authuser': False,
+                'force_authuser_webservice': False,
+                'locked': False,
+                'roles': ['guest'],
+                'start_url': 'dashboard.py'},
+ 'omdadmin': {'alias': u'omdadmin',
+              'force_authuser': False,
+              'force_authuser_webservice': False,
+              'locked': True,
+              'roles': ['admin'],
+              'start_url': 'dashboard.py'}}
+
+
