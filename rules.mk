@@ -17,6 +17,12 @@ checkgroup_parameters['filesystem'] = [
   ( {'levels': [(1, (-10.0, -5.0)), (1099511627776, (-5.0, -1.0)), (5497558138880, (-2.0, -1.0))]}, [], ALL_HOSTS, ALL_SERVICES ),
 ] + checkgroup_parameters['filesystem']
 
+checkgroup_parameters.setdefault('cpu_load', [])
+
+checkgroup_parameters['cpu_load'] = [
+  ( (11.0, 20.0), [] , ALL_HOSTS ),
+] + checkgroup_parameters['cpu_load']
+
 
 
 active_checks.setdefault('icmp', [])
