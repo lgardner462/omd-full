@@ -5,24 +5,11 @@
 extra_service_conf.setdefault('_ec_sl', [])
 
 extra_service_conf['_ec_sl'] = [
+  ( 10, [], ALL_HOSTS, [u'Check_MK$'] ),
   ( 10, ['tsstuff-basic', ], ALL_HOSTS, ALL_SERVICES ),
   ( 20, ['tsstuff-critical', ], ALL_HOSTS, ALL_SERVICES ),
   ( 30, ['tsstuff-critical-24x7', ], ALL_HOSTS, ALL_SERVICES ),
-  ( 10, [], ALL_HOSTS, ['Check_MK$'] ),
 ] + extra_service_conf['_ec_sl']
-
-checkgroup_parameters.setdefault('filesystem', [])
-
-checkgroup_parameters['filesystem'] = [
-  ( {'levels': [(1, (-10.0, -5.0)), (1099511627776, (-5.0, -1.0)), (5497558138880, (-2.0, -1.0))]}, [], ALL_HOSTS, ALL_SERVICES ),
-] + checkgroup_parameters['filesystem']
-
-checkgroup_parameters.setdefault('cpu_load', [])
-
-checkgroup_parameters['cpu_load'] = [
-  ( (11.0, 20.0), [] , ALL_HOSTS ),
-] + checkgroup_parameters['cpu_load']
-
 
 
 active_checks.setdefault('icmp', [])
@@ -60,6 +47,13 @@ extra_service_conf['check_interval'] = [
 ] + extra_service_conf['check_interval']
 
 
+checkgroup_parameters.setdefault('cpu_load', [])
+
+checkgroup_parameters['cpu_load'] = [
+  ( (11.0, 20.0), [], ALL_HOSTS ),
+] + checkgroup_parameters['cpu_load']
+
+
 extra_host_conf.setdefault('notification_interval', [])
 
 extra_host_conf['notification_interval'] = [
@@ -94,10 +88,9 @@ extra_service_conf['notification_period'] = [
 
 checkgroup_parameters.setdefault('filesystem', [])
 
-#checkgroup_parameters['filesystem'] = [
-#  ( {'levels': (75.0, 95.0)}, [], ALL_HOSTS, [u'/pool002'] ),
-#  ( {'levels': (95.0, 96.0)}, [], ALL_HOSTS, ALL_SERVICES ),
-#] + checkgroup_parameters['filesystem']
+checkgroup_parameters['filesystem'] = [
+  ( {'levels': [(1, (-10.0, -5.0)), (1099511627776, (-5.0, -1.0)), (5497558138880, (-2.0, -1.0))]}, [], ALL_HOSTS, ALL_SERVICES ),
+] + checkgroup_parameters['filesystem']
 
 
 active_checks.setdefault('ssh', [])
