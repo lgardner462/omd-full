@@ -7,7 +7,7 @@ CREDENTIALS_DIR=/home/lgardner/bin/
 
 show_help () {
     echo "Remote ack an omd host or service via curl"
-    echo "-c is the contract tsstuff,c3ddb,engaging"
+    echo "-c is the contract tsstuff,c3ddb,tsstuff"
     echo "-n is the node/host name for the ack    _required_"
     echo "-s is the service name if you are acking a service   _optional_"
     exit
