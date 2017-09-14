@@ -9,13 +9,14 @@ show_help () {
     echo '-c for critical host <hostname>'
     echo '-x for critical 24x7 host <hostname>'
     echo '-n to not reload after adding host'
-    echo '-r for printer (doesn't need criticality flag)'
-    echo 'adduser.sh -b testhost -w tsstuff -s nodes' 
+    echo '-r for printer (does not need criticality flag)'
+    echo 'adduser.sh -b testhost ' 
     exit
 }
 
 if [[ $EUID -ne 0 ]];then
         site=$(whoami)
+	contract=$(whoami)
 else
         echo "Script must be run as OMD user"
         exit 1
