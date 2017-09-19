@@ -17,7 +17,7 @@ notification_rules += [
                      'host_body': u'Event:    $EVENT_TXT$\nOutput:   $HOSTOUTPUT$\nPerfdata: $HOSTPERFDATA$\n$LONGHOSTOUTPUT$\n',
                      'host_subject': u'ACK alert:  $HOSTNAME$ - $EVENT_TXT$',
                      'reply_to': 'tsstuff-noc@techsquare.com',
-'service_body': u'Service: $SERVICEDESC$\nEvent: $EVENT_TXT$\nOutput: $SERVICEOUTPUT$\nPerfdata: $SERVICEPERFDATA$\n$LONGSERVICEOUTPUT$\n'})},V
+'service_body': u'Service: $SERVICEDESC$\nEvent: $EVENT_TXT$\nOutput: $SERVICEOUTPUT$\nPerfdata: $SERVICEPERFDATA$\n$LONGSERVICEOUTPUT$\n'})},
 {'allow_disable': True,
   'comment': u'do not escalate for ack\n',
   'contact_all': False,
