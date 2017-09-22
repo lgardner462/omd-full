@@ -117,6 +117,7 @@ ping_levels = [
 extra_service_conf.setdefault('retry_interval', [])
 
 extra_service_conf['retry_interval'] = [
+  ( 60.0,  ALL_HOSTS , [u'USERCPU$'] ),
   ( 3, [], ALL_HOSTS, ALL_SERVICES ),
 ] + extra_service_conf['retry_interval']
 
