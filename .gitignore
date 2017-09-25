@@ -5,5 +5,7 @@ critical
 critical24x7
 printer
 README.md
+git_pull.sh
+git_pull.sh
 bin/scripts/git_pull.sh
 bin/scripts/git_push.sh
