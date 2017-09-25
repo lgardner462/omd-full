@@ -1,0 +1,91 @@
+#!/bin/bash
+
+show_help () {
+    echo add -h for help
+    echo add -w for warn flag
+    echo add -c for crit flag
+    exit
+}
+
+text=0
+critExit=0
+warnExit=0
+while getopts "h?w:c:" opt; do
+    case "$opt" in
+    h|\?)
+        show_help
+        exit 0
+        ;;
+    c)
+        crit=$OPTARG
+        ;;
+    w) 
+        warn=$OPTARG
+        ;;
+    esac
+done
+outputstr=""
+procstr=""
+procs=$(ps aux  | tail -n +2 ) 
+min=$(( $warn / 4 ))
+users=$( echo -e "$procs" | awk '{print $1}' | sort | uniq )
+cutproc=$(ps aux | tail -n +2 | ( while read -r line;do
+	str1=$( awk '{cpu=$3;mem=$4;min='"$min"'; if (cpu > min ) print $1,$2,$3,$4,$11;}')
+done
+echo -e "$str1"))
+
+if [[ $cutproc == "" ]];then
+        #No processes over 30% CPU, script ends
+        echo -e "OK - No users using excessive CPU."
+        exit 0
+fi
+#cutproc1=$( echo -e "$cutproc" | (while read -r line;do
+#        longname=$(echo $line | awk '{print $5}')
+#        basename=$( basename $longname)
+#        formatted=$( echo $line | sed "s~$longname~$basename~g")
+#done
+#echo -e "$formatted"))
+#echo -e "$procs" | awk '{print $2}'| tr "\n" ","
+for i in ${users};do
+       cpuuse=$(echo -e "$procs" | grep -e "$i" | grep -v "KiB" | awk '{print $3}' | awk '{s+=$1} END {print s}' )
+       if [[ $( echo " $cpuuse > $crit" | bc ) -eq 1  ]];then
+               critExit=1
+               cutprocuser=$(echo -e "$cutproc" | grep $i)
+               if [[ $cutprocuser != "" ]];then
+               outputstr=$outputstr"$cutprocuser" 
+               fi
+       elif [[ $( echo " $cpuuse > $warn " | bc ) -eq 1 ]];then
+               warnExit=1
+               cutprocuser=$(echo -e "$cutproc" | grep $i )
+               if [[ $cutprocuser != "" ]];then
+                     while IFS= read -r line;do  
+                         if [[ $line != "" ]];then
+                             #echo $line
+                             long=$(echo $line | awk '{print $5}')
+                             base=$(basename $(echo $line | awk '{print $5}' | sed 's/\[//g' | sed s'/\]//g'))
+                             trimmed=$(echo $line | sed "s~$long~$base~g")
+                             outputstr=$outputstr"$trimmed""\n"
+                         fi
+                     done <<< "$cutprocuser"
+               fi
+               #if [[ $cutprocuser != "" ]];then
+               #outputstr=$outputstr"$cutprocuser""\n"
+               #fi
+               
+       fi
+done
+if [[ $critExit -eq 1 ]];then
+    echo -e "CRIT - $outputstr"
+    exit 2
+elif [[ $warnExit -eq 1 ]];then
+    #echo -e "$outputstr"
+    echo -e "WARN - $outputstr"
+    exit 1
+elif [[ $critExit -eq 0 && $warnExit -eq 0 ]];then
+    echo -e "OK - No users using excessive CPU."
+    exit 0
+else
+    echo "Unknown - Something is borked!"
+fi
+
+
