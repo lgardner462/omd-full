@@ -46,7 +46,7 @@ echo "Clone from lgardner omd-full repo, make him put it somewhere else if neede
 git clone git@github.com:lgardner462/omd-full.git .
 
 cp bin/scripts/git_push.sh .
-cd bin/scripts/git_pull.sh .
+cp bin/scripts/git_pull.sh .
 
 mv users.mkz ../../multisite.d/wato/users.mk
 mv multisite.mkz ../../multisite.mk
