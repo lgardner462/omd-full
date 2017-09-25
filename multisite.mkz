@@ -3,13 +3,13 @@
 # Users with unrestricted permissions. These users will always
 # have the permissions to edit users, roles and permissions,
 # even if configuration has been edited via WATO
-admin_users = [ "tsstuff-admin" ]
+admin_users = [ "engaging-admin" ]
 
 # NagVis
 #
 # The NagVis-Snapin needs to know the URL to nagvis.
 # This is not always /nagvis/ - especially not for OMD
-nagvis_base_url = "/tsstuff/nagvis"
+nagvis_base_url = "/engaging/nagvis"
 
 # Views allow to play alarm sounds according to the
 # "worst" state of the shown items. Enable sounds here:
@@ -102,9 +102,9 @@ wato_host_tags = [
   ( "prod", "Productivity", [
        ( "prod", "Production System" ),
        ( "test", "Test System" ),
-       ("tsstuff-basic","tsstuff-basic"),
-       ("tsstuff-critical","tsstuff-critical"),
-       ("tsstuff-critical-24x7","tsstuff-critical-24x7"),
+       ("engaging-basic","engaging-basic"),
+       ("engaging-critical","engaging-critical"),
+       ("engaging-critical-24x7","engaging-critical-24x7"),
     ]),
   ( "bulkwalk", "Bulkwalk (SNMP v2c)", [
        ( None,   "simple walk (SNMP v1)"),

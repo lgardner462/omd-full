@@ -7,7 +7,7 @@ CREDENTIALS_DIR=/home/lgardner/bin/
 
 show_help () {
     echo "Remote ack an omd host or service via curl"
-    echo "-c is the contract tsstuff,c3ddb,tsstuff"
+    echo "-c is the contract engaging,c3ddb,engaging"
     echo "-n is the node/host name for the ack    _required_"
     echo "-s is the service name if you are acking a service   _optional_"
     exit
@@ -39,7 +39,7 @@ while getopts "h?n:s:o:u:c:a:p:" opt; do
 done
 
 if [[ $contract == openmind ]];then
-	contract="tsstuff"
+	contract="engaging"
 fi
 
 source $CREDENTIALS_DIR/$contract
